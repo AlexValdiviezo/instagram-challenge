@@ -1,0 +1,101 @@
+.card{
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: white;
+    border-radius: 25px;
+    border-color: #EFEFEF;
+    width: 23em;
+    height: 40em;
+    gap: 10px;
+}
+
+.card .profile-card{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.card .buttons-card{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 10px;
+    gap: 10px;
+}
+
+.card .buttons-card img{
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+}
+
+.card .cont-likes{
+    padding-left: 12px;
+    line-height: 0;
+    font-family: 'Humnst777 Cn BT';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1em;
+}
+
+.card .photo-index{
+    display: flex;
+    line-height: 0;
+    padding-left: 10px;
+    gap: 10px;
+}
+
+.card .photo-index .user{
+    font-family: 'Humnst777 Cn BT';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1em;
+}
+
+.card .photo-index .comment-user{
+    font-family: 'Poppins' sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1em;
+}
+
+.card .comment-container{
+    padding: 10px;
+    width: 100%;
+    border-top: 1px solid #EFEFEF;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card .comment-container .comment{
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 10px;
+    width: 100%;
+}
+
+.card .comment-container .comment img{
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+}
+
+.card .comment-container .comment input{
+    border: none;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1em;
+}
+
+.card .comment-container img{
+    width: 10em;
+    height: 1.5em;
+}

@@ -1,0 +1,41 @@
+.container{
+    padding: 10px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    background-color: white;
+    border-bottom: 1px solid;
+    border-color: black;
+    gap: 25px;
+}
+
+.container .search-container{
+    padding: 10px;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 5px;
+    align-items: center;
+    background-color: #EFEFEF;
+    border-radius: 10px;
+}
+
+.container .search-container input{
+    width: 20vw;
+    border: none;
+    background-color: #EFEFEF;
+    outline: none;
+    font-family: 'Inconsolata' sans-serif;
+    color: #8E8E8E;
+}
+
+.container .icons-container{
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container .icons-container img{
+    cursor: pointer;
+}
