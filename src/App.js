@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 
 import Navbar from './components/Navbar';
 import Card from './components/Card';
@@ -6,6 +6,7 @@ import Card from './components/Card';
 import './App.css';
 
 function App() {
+
   return (
     <Fragment>
       <nav className='static'>

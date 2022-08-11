@@ -5,7 +5,7 @@
     border-radius: 25px;
     border-color: #EFEFEF;
     width: 23em;
-    height: 40em;
+
     gap: 10px;
 }
 
@@ -17,6 +17,17 @@
     gap: 10px;
     padding-left: 20px;
     padding-top: 10px;
+}
+
+.card .profile-card .menu{
+    padding-right: 20px;
+    width:100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.card .profile-card .menu img{
+    cursor: pointer;
 }
 
 .card .buttons-card{
@@ -98,4 +109,26 @@
 .card .comment-container img{
     width: 10em;
     height: 1.5em;
+}
+
+/*ANIMACIONES*/
+
+.heart-clicked{
+    animation-name: heart-animate;
+    animation-duration: 0.3s;
+}
+
+@keyframes heart-animate{
+    0%{
+        width: 2em;
+        height: 2em;
+    }
+    50%{
+        width: 2.5em;
+        height: 2.5em;
+    }
+    100%{
+        width: 2em;
+        height: 2em;
+    }
 }

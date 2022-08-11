@@ -10,7 +10,7 @@ body{
 }
 
 .public-items{
-    padding-top: 6%;
+    padding-top: 100px;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
