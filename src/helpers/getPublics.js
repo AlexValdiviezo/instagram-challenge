@@ -1,5 +1,5 @@
 export const getPublics = async() =>{
-    const result = await fetch(`http://localhost:8080/api/`);
+    const result = await fetch(`https://instagram-challenge-sondeos.herokuapp.com/api/`);
     const {data} = await result.json();
     return data;
 }

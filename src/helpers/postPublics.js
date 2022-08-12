@@ -5,7 +5,7 @@ export const postPublics = async(url, txt) =>{
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ imagen: url, titulo:txt, likes:0})
     };
-    const result = await fetch(`http://localhost:8080/api/`, requestOptions);
+    const result = await fetch(`https://instagram-challenge-sondeos.herokuapp.com/api/`, requestOptions);
     const {error, data} = await result.json();
     if(error){
         return {
