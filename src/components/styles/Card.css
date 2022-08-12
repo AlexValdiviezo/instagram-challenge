@@ -1,3 +1,56 @@
+.modal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.modal .modal-container{
+    background-color: white;
+    width: 30%;
+    height: 70%;
+    border-radius: 25px;
+    animation-name: modaldelete-animation;
+    animation-duration: 0.5s;
+}
+
+@keyframes modaldelete-animation {
+    0%{
+        width: 40%;
+        height: 80%;
+    }
+    100%{
+        width: 30%;
+        height: 70%;
+    }
+}
+
+.modal .modal-container .delete{
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width: 100%;
+    color: red;
+    font-size: 1em;
+    font-weight: 800;
+    border-bottom: 1px solid black;
+    text-align: center;
+    cursor: pointer;
+}
+
+.modal .modal-container .cancel{
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width: 100%;
+    color: black;
+    font-size: 1em;
+    font-weight: 800;
+    border-bottom: 1px solid black;
+    text-align: center;
+    cursor: pointer;
+}
+
 .card{
     display: flex;
     flex-flow: column nowrap;
@@ -13,21 +66,28 @@
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: 10px;
     padding-left: 20px;
     padding-top: 10px;
 }
 
+.card .profile-card div{
+    display: flex;
+    flex-flow: row nowrap;
+    gap:10px;
+}
+
 .card .profile-card .menu{
+    height: 25px;
     padding-right: 20px;
-    width:100%;
     display: flex;
     justify-content: flex-end;
+    cursor: pointer;
 }
 
 .card .profile-card .menu img{
-    cursor: pointer;
+    width: 20%;
 }
 
 .card .buttons-card{
@@ -56,9 +116,10 @@
 
 .card .photo-index{
     display: flex;
-    line-height: 0;
+    line-height: 1;
     padding-left: 10px;
     gap: 10px;
+    width: 100%;
 }
 
 .card .photo-index .user{
