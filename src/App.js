@@ -7,13 +7,20 @@ import './App.css';
 
 function App() {
 
+  const [newPublic, setNewPublic] = useState({});
+
+  const changeNewPublic = (e) =>{
+    setNewPublic(e);
+  }
+
+
   return (
     <Fragment>
       <nav className='static'>
-        <Navbar />
+        <Navbar setNewPublic={(e)=>changeNewPublic(e)}/>
       </nav>
       <div className="public-items">
-        <Card />
+        <Card newPublic={newPublic}/>
       </div>
     </Fragment>
   );

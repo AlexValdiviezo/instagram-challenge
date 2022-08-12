@@ -5,20 +5,28 @@ import { useMediaQuery } from 'react-responsive'
 import Modal from 'react-modal';
 import {postPublics} from '../helpers/postPublics';
 
-export default function Navbar() {
+export default function Navbar({setNewPublic}) {
 
-  let subtitle;
+  const [modalState, setModalState] = useState('none');
   const [modalIsOpen, setIsOpen] = useState(false);
   const [urlImage, setUrl] = useState('URL de la imagen');
   const [text, setText] = useState('Texto opcional de la imagen')
+  const [error, setError] = useState('error');
 
   const photoUpload = (url, text) =>{
+      setModalState('loading');
       const result = async() => {
         let resp = await postPublics(url, text);
         console.log(resp);
+        if(resp.error){
+          setError(resp.error);
+          setModalState('error');
+        }else{
+          setModalState('success');
+          setNewPublic(resp);
+        }
       }
       result();
-      setIsOpen(false);
   }
 
   const openModal = () => {
@@ -31,6 +39,7 @@ export default function Navbar() {
   }
 
   const closeModal = () => {
+      setModalState('none');
       setIsOpen(false);
   }
   
@@ -44,7 +53,7 @@ export default function Navbar() {
   })
 
 // Algoritmo de busqueda input
-
+/*
   const searchInicial = 'Busca'
 
   const [search, setSearch] = useState(searchInicial);
@@ -60,7 +69,7 @@ export default function Navbar() {
   const isNotFocusSearch = () =>{
     if(search === '') setSearch(searchInicial)
   }
-
+*/
 
   return (
     <Fragment>
@@ -70,7 +79,13 @@ export default function Navbar() {
         onRequestClose={closeModal}
         className="modal-container"
       > 
-        <p onClick={closeModal} className='modal-close'>X</p>
+      {(modalState == 'loading') &&
+      <div className='loading'>
+        <img src='./icons/loading.svg'></img>
+        <p>Loading</p>
+      </div>}
+      {(modalState == 'none') && <>
+      <p onClick={closeModal} className='modal-close'>X</p>
         <div className='modal-card'>
           <div className='modal-header'>
             <p>Crear una nueva publicación</p>
@@ -81,22 +96,40 @@ export default function Navbar() {
             <button onClick={()=>photoUpload(urlImage, text)}>Subir Imagen</button>
           </div>
         </div>
+        </>}
+        {
+          (modalState == 'success') && <>
+          <div className='success'>
+            <img src='./icons/success.svg'></img>
+            <p>Success</p>
+            <button onClick={closeModal}>Close</button>
+          </div>
+          </>
+        }{
+          (modalState == 'error') && <>
+          <div className='error'>
+            <img src='./icons/error.svg'></img>
+            <p>{error}</p>
+            <button onClick={closeModal}>Close</button>
+          </div>
+          </>
+        }
       </Modal>
       <div className='container'>
         <img src='./icons/instagram.svg'></img>
-        {
+        {/* //Buscador
           isDesktopOrLaptop &&
           <div className='search-container'>
             <img src='./icons/search.svg'></img>
             <input onBlur={isNotFocusSearch} onClick={searchInit} onChange={changeSearch} value={search}></input>
-          </div>
+          </div>*/
         }
         <div className='icons-container'>
             <img src='./icons/home.svg'></img>
-            <img src='./icons/message.svg'></img>
+            {/* //No es necesario <img src='./icons/message.svg'></img>*/}
             <img onClick={()=>setIsOpen(true)} src='./icons/add.svg'></img>
-            <img src='./icons/search-icon.svg'></img>
-            <img src='./icons/heart.svg'></img>
+            {/* //No es necesario <img src='./icons/search-icon.svg'></img>*/}
+            {/* //No es necesario <img src='./icons/heart.svg'></img>*/}
             <img src='./icons/profile.svg'></img>
         </div>
       </div>

@@ -6,7 +6,7 @@ import './styles/Card.css'
 
 import Modal from 'react-modal';
 
-export default function Card() {
+export default function Card({newPublic}) {
 
     const [modalIsOpen, setIsOpen] = useState(false);
     const [idDelete, setIdDelete] = useState('');
@@ -15,12 +15,7 @@ export default function Card() {
     const [heartClickedClass, setHeartClass] = useState('');
     const [likes, setLikes] = useState(317);
     const [publicCont, setPublicCont] = useState(0);
-    const [publics, setPublics] = useState([{
-        uid: "62f57918730c33f36d041990",
-        imagen: "https://i.imgur.com/9L45pJG.jpeg",
-        titulo: "test-titulo",
-        likes: 0,
-    }]);
+    const [publics, setPublics] = useState([]);
 
         useEffect( () => {
         const result = async() => {
@@ -29,30 +24,19 @@ export default function Card() {
                 setPublics(resp);
                 setPublicCont(resp.length);
             }
-            else setPublics([{
-                _id: "62f57918730c33f36d041990",
-                imagen: "https://i.imgur.com/9L45pJG.jpeg",
-                titulo: "test-titulo",
-                likes: 0,
-                __v: 0
-              }])
+            else setPublics([])
           }
           result();
     }, [])
 
+    useEffect( () => {
+        setPublics(e=>{
+            e.unshift(newPublic);
+            return e;
+        })
+    },[newPublic])
+
     const changeHeart = (id) =>{
-        /* 
-        //NOT FOUND
-        if(heartClickedClass === ''){
-            setHeartIcon('./icons/heart-clicked.svg');
-            setHeartClass('heart-clicked');
-            setLikes(e=>e+1);
-        }else{
-            setHeartIcon('./icons/heart.svg');
-            setHeartClass('');
-            setLikes(e=>e-1);
-        }
-        */
         putPublics(id);
         setPublics(publics.map((e)=>{
             if(e.uid === id){
@@ -124,7 +108,7 @@ export default function Card() {
                         <div className='profile-card'>
                             <div>
                                 <img src='./icons/profile.svg'></img>
-                                <p>indirectasderock</p>
+                                <p>username</p>
                             </div>
                             <div onClick={()=>openModal(e.uid)} className='menu'>
                                 <img src='./icons/menu.svg'></img>
@@ -140,15 +124,17 @@ export default function Card() {
                             <p>{e.likes} Me gusta</p>
                         </div>
                         <div className='photo-index'>
-                            <p className='comment-user'><a className='user'>indirectasderock</a> {e.titulo}</p>
+                            <p className='comment-user'><a className='user'>username</a> {e.titulo}</p>
                         </div>
+                        {/*
+                        //Caja de comentarios
                         <div className='comment-container'>
                             <div className='comment'>
                                 <img src='./icons/emote.svg'></img>
                                 <input value='Añade un comentario...'></input>
                             </div>
                             <img src='./icons/public-button.svg'></img>
-                        </div>
+                        </div>*/}
                     </div>
                 )
             })

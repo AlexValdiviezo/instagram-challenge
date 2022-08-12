@@ -2,12 +2,94 @@
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+    justify-content: center;
     margin-top: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.7);
 }
 
+.modal-container .error{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    height: 70%;
+    border-radius: 25px;
+    background-color: white;
+    font-family: 'Poppins' sans-serif;
+    font-size: 1em;
+    font-weight: 800;
+    color: #FB5348;
+}
+
+.modal-container .error button{
+    background-color: #FB5348;
+    border: none;
+    border-radius: 20px;
+    width: 20vw;
+    height: 5vh;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.modal-container .success{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    height: 70%;
+    border-radius: 25px;
+    background-color: white;
+    font-family: 'Poppins' sans-serif;
+    font-size: 1em;
+    font-weight: 800;
+    color: #3DF771;
+}
+
+.modal-container .success button{
+    background-color: #3DF771;
+    border: none;
+    border-radius: 20px;
+    width: 20vw;
+    height: 5vh;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.modal-container .loading{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    height: 70%;
+    border-radius: 25px;
+    background-color: white;
+    font-size: 1em;
+    font-weight: 600;
+    color:black;
+}
+
+.modal-container .loading img{
+    animation-name: loading-rotate;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes loading-rotate {
+    100%{
+        transform: rotate(360deg)
+    }
+}
 
 .modal-container .modal-close{
     width: 100%;
@@ -121,4 +203,5 @@
 
 .container .icons-container img{
     cursor: pointer;
+    width: 2em;
 }

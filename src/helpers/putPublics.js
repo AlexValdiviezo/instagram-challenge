@@ -4,6 +4,6 @@ export const putPublics = async(id) =>{
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: id, like:1})
     };
-    const result = await fetch('https://instagram-challenge-backend.herokuapp.com/api/', requestOptions);
-    return;
+    const {data} = await fetch('http://localhost:8080/api/', requestOptions);
+    return data;
 }
