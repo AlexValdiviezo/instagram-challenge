@@ -6,6 +6,5 @@ export const deletePublics = async(uid) =>{
     };
     const result = await fetch(`https://instagram-challenge-backend.herokuapp.com/api/`, requestOptions);
     const {data} = await result.json();
-    console.log(data);
     return data;
 }

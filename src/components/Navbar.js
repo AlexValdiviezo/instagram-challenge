@@ -17,7 +17,6 @@ export default function Navbar({setNewPublic}) {
       setModalState('loading');
       const result = async() => {
         let resp = await postPublics(url, text);
-        console.log(resp);
         if(resp.error){
           setError(resp.error);
           setModalState('error');
@@ -78,6 +77,7 @@ export default function Navbar({setNewPublic}) {
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         className="modal-container"
+        ariaHideApp={false}
       > 
       {(modalState == 'loading') &&
       <div className='loading'>

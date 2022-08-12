@@ -30,10 +30,16 @@ export default function Card({newPublic}) {
     }, [])
 
     useEffect( () => {
-        setPublics(e=>{
-            e.unshift(newPublic);
-            return e;
-        })
+        if(newPublic.uid){
+            let array = [];
+            array.push(newPublic)
+            console.log(array);
+            publics.map((e)=>{
+                array.push(e);
+            })
+            console.log(array);
+            setPublics(array);
+        }
     },[newPublic])
 
     const changeHeart = (id) =>{
@@ -76,6 +82,7 @@ export default function Card({newPublic}) {
             isOpen={modalIsOpen}
             onRequestClose={closeModal}
             className="modal"
+            ariaHideApp={false}
         >
             <div className='modal-container'>
                 <div onClick={()=>deletePublic(idDelete)} className='delete'>Eliminar publicación</div>
@@ -104,7 +111,7 @@ export default function Card({newPublic}) {
                 }
                 
                 return(
-                    <div className='card'>
+                    <div key={e.uid} className='card'>
                         <div className='profile-card'>
                             <div>
                                 <img src='./icons/profile.svg'></img>

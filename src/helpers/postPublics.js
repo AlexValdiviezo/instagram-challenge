@@ -12,6 +12,5 @@ export const postPublics = async(url, txt) =>{
             error: 'Ocurrió un error al intentar subir la imagen'
         }
     }
-    console.log(data);
     return data;
 }
