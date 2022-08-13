@@ -42,6 +42,11 @@ export default function Card({newPublic}) {
 
 
     useEffect( () => {
+        setIdUpdate(null);
+        setText(null);
+        setUrl(null);
+        setIsOpen(false);
+        setPublicEdit(false);
         const result = async() => {
             let resp = await getPublics();
             if(resp[0]) {
@@ -63,27 +68,40 @@ export default function Card({newPublic}) {
         }
     },[newPublic])
 
-    const changeHeart = (id) =>{
-        putPublics(id);
-        setPublics(publics.map((e)=>{
-            if(e.uid === id){
-                e.likes = e.likes + 1
-            }
-            return e;
-        }))
+    const changeHeart = async(id) =>{
+        try {
+            await putPublics(id);
+            setPublics(publics.map((e)=>{
+                if(e.uid === id){
+                    e.likes = e.likes + 1
+                }
+                return e;
+            }))
+        } catch (error) {
+            console.log(error);
+        }
     }
     
     const closeModal = () =>{
+        setIdUpdate(null);
+        setText(null);
+        setUrl(null);
         setIsOpen(false);
         setPublicEdit(false);
     }
 
-    const openModal = (uid, titulo, imagen, likes) =>{
+    const openModal = async(uid, titulo, imagen, like) =>{
         setIdUpdate(uid);
         setText(titulo);
         setUrl(imagen);
         setIsOpen(true);
-        setLikes(likes);
+    }
+
+    const afterOpen = () =>{
+        console.log(idUpdate);
+        console.log(text);
+        console.log(urlImage);
+        console.log(modalIsOpen);
     }
 
     const deletePublic = (uid) =>{
@@ -106,8 +124,6 @@ export default function Card({newPublic}) {
     }
 
     const photoUpdate = (id, urlImage, text) =>{
-        const req = async() => await putAllproperty(id, urlImage, text);
-        req();
         setPublics(e=>{
             e = e.map(arrayElements => {
                 if(arrayElements.uid != idUpdate ){
@@ -117,14 +133,22 @@ export default function Card({newPublic}) {
                         uid: idUpdate,
                         imagen: urlImage,
                         titulo: text,
-                        likes
                     }
                 }
             })
             e = e.filter(Boolean);
             return e;
         })
-        setIsOpen(false);
+        const req = async() => {
+            try {
+                await putAllproperty(idUpdate, urlImage, text);
+                setIsOpen(false);
+            } catch (error) {
+                console.log(error);
+            }
+
+        }
+        req();
     }
 
   return (
@@ -133,6 +157,7 @@ export default function Card({newPublic}) {
             isOpen={modalIsOpen}
             onRequestClose={closeModal}
             onAfterClose={closeModal}
+            onAfterOpen={afterOpen}
             className="modal"
             ariaHideApp={false} 
             shouldCloseOnEsc={true}
