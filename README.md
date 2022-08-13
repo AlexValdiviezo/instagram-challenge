@@ -8,7 +8,9 @@
 </code><br>
 Lo unico que debemos hacer a continuacion es confirmar que la url sea la correcta del backend.
 
-- Una vez finalizado el paso anterior proseguimos a abrir la carpeta en la consola y ejecutar el comando `npm i` <br>
+- Una vez finalizado el paso anterior proseguimos a abrir la carpeta en la consola y ejecutar el comando `npm i` para instalar los modulos.<br>
+
+- Una vez instalado los modulos proseguimos a ejecutar el comando `npm run start` para iniciar la aplicacion.
 
 - Una vez iniciada la aplicación debería estar hosteada en la ruta: `http://localhost:3000`
 
