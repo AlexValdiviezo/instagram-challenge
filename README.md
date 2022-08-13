@@ -8,7 +8,6 @@
 </code><br>
 Lo unico que debemos hacer a continuacion es confirmar que la url sea la correcta del backend.
 
-<<<<<<< HEAD
 - Una vez finalizado el paso anterior proseguimos a abrir la carpeta en la consola y ejecutar el comando `npm i` <br>
 
 - Una vez iniciada la aplicación debería estar hosteada en la ruta: `http://localhost:3000`
@@ -32,7 +31,7 @@ Lo unico que debemos hacer a continuacion es confirmar que la url sea la correct
 
 ## Estilos
 ### Para los estilos utilicé css puro haciendo mucho uso del flexbox para un diseño responsivo, media querys para casos especiales en los que la aplicación no se veía a buena escala en dispositivos mobiles.
-=======
+
 - Una vez finalizado el paso anterior proseguimos a abrir la carpeta en la consola y ejecutar el comando `npm i` para instalar los modulos.<br>
 
 - Una vez instalado los modulos proseguimos a ejecutar el comando `npm run start` para iniciar la aplicacion.
@@ -58,14 +57,10 @@ Lo unico que debemos hacer a continuacion es confirmar que la url sea la correct
 
 ## Estilos
 Para los estilos utilicé css puro haciendo mucho uso del flexbox para un diseño responsivo y media querys para casos especiales en los que la aplicación no se veía a buena escala en dispositivos mobiles.
->>>>>>> ba73c75ab90d8b10d31524d73d093879f4cd5201
 <br></br>
  
 # HOST
 - Actualmente la pagina esta hosteada en [Heroku App](https://instagram-challenge-sondeos.herokuapp.com)
 - Con su API en [https://instagram-challenge-backend.herokuapp.com/api](https://instagram-challenge-backend.herokuapp.com/api)
-<<<<<<< HEAD
 - Documentación de la API: [Documentacion en GitHub](https://github.com/AlexValdiviezo/instagram-challenge-API)
-=======
 - Documentación de la API: [Documentacion en GitHub](https://github.com/AlexValdiviezo/instagram-challenge-API)
->>>>>>> ba73c75ab90d8b10d31524d73d093879f4cd5201
