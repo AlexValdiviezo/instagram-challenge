@@ -1,6 +1,6 @@
 import { env } from "../configs/env";
 
-export const postPublics = async(url, txt) =>{
+export const postPublics = async(url, txt='') =>{
     try {
         const requestOptions = {
             method: 'POST',

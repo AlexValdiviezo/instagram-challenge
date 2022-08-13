@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react'
+import React, {Fragment, useRef, useState, useEffect} from 'react'
 import './styles/Navbar.css'
 import { useMediaQuery } from 'react-responsive'
 
@@ -8,12 +8,27 @@ import { uploadFiles } from '../helpers/uploadFiles';
 
 export default function Navbar({setNewPublic}) {
 
+  const modalRef = useRef();
   const [file, setFile] = useState('');
   const [modalState, setModalState] = useState('none');
   const [modalIsOpen, setIsOpen] = useState(false);
   const [urlImage, setUrl] = useState('URL de la imagen');
   const [text, setText] = useState('Texto opcional de la imagen')
   const [error, setError] = useState('error');
+
+  useEffect(()=>{
+    const checkIfClickedOutside = e => {
+        if(modalIsOpen && modalRef.current && !modalRef.current.contains(e.target)){
+            setIsOpen(false);
+        }
+    }
+    
+    document.addEventListener("mousedown", checkIfClickedOutside);
+
+    return() => {
+        document.removeEventListener("mousedown", checkIfClickedOutside)
+    }
+}, [modalIsOpen]);
 
   const photoUpload = (url, text) =>{
       setModalState('loading');
@@ -95,7 +110,7 @@ export default function Navbar({setNewPublic}) {
       </div>}
       {(modalState == 'none') && <>
       <p onClick={closeModal} className='modal-close'>X</p>
-        <div className='modal-card'>
+        <div className='modal-card' ref={modalRef}>
           <div className='modal-header'>
             <p>Crear una nueva publicación</p>
           </div>
@@ -117,7 +132,7 @@ export default function Navbar({setNewPublic}) {
         </>}
         {
           (modalState == 'success') && <>
-          <div className='success'>
+          <div className='success' ref={modalRef}>
             <img src='./icons/success.svg'></img>
             <p>Success</p>
             <button onClick={closeModal}>Close</button>
@@ -125,7 +140,7 @@ export default function Navbar({setNewPublic}) {
           </>
         }{
           (modalState == 'error') && <>
-          <div className='error'>
+          <div className='error' ref={modalRef}>
             <img src='./icons/error.svg'></img>
             <p>{error}</p>
             <button onClick={closeModal}>Close</button>

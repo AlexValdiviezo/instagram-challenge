@@ -26,6 +26,21 @@ export default function Card({newPublic}) {
 
     const publicCont = publics.length;
 
+    useEffect(()=>{
+        const checkIfClickedOutside = e => {
+            if(modalIsOpen && modalRef.current && !modalRef.current.contains(e.target)){
+                setIsOpen(false);
+            }
+        }
+        
+        document.addEventListener("mousedown", checkIfClickedOutside);
+
+        return() => {
+            document.removeEventListener("mousedown", checkIfClickedOutside)
+        }
+    }, [modalIsOpen]);
+
+
     useEffect( () => {
         const result = async() => {
             let resp = await getPublics();
@@ -121,17 +136,17 @@ export default function Card({newPublic}) {
             className="modal"
             ariaHideApp={false} 
             shouldCloseOnEsc={true}
-            shouldCloseOnOverlayClick={true}
+            shouldReturnFocusAfterClose={true}
         >
             {!publicEdit && 
-            <div className='modal-container'>
+            <div className='modal-container' ref={modalRef}>
                 <div onClick={()=>deletePublic(idUpdate)} className='delete'>Eliminar publicación</div>
                 <div onClick={editPublic}className='edit'>Editar publicación</div>
                 <div onClick={closeModal}className='cancel'>Cancelar</div>
             </div>
             }{
                 publicEdit &&
-                <div className='modal-container'>
+                <div className='modal-container' ref={modalRef}>
                     <div className='modal-header'>
                         <p>Editar publicación</p>
                     </div>

@@ -1,6 +1,6 @@
 import { env } from "../configs/env";
 
-export const putAllproperty = async(id, imagen, titulo) =>{
+export const putAllproperty = async(id, imagen, titulo='') =>{
     try {
         const requestOptions = {
             method: 'PUT',
