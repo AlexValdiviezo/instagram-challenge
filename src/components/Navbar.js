@@ -69,6 +69,7 @@ export default function Navbar({setNewPublic}) {
   const closeModal = () => {
       setModalState('none');
       setIsOpen(false);
+      setFile('');
   }
   
   const isDesktopOrLaptop = useMediaQuery({
