@@ -70,13 +70,16 @@ export default function Card({newPublic}) {
 
     const changeHeart = async(id) =>{
         try {
-            await putPublics(id);
-            setPublics(publics.map((e)=>{
-                if(e.uid === id){
-                    e.likes = e.likes + 1
-                }
-                return e;
-            }))
+            await putPublics(id)
+            .then(()=>{
+                setPublics(publics.map((e)=>{
+                    if(e.uid === id){
+                        e.likes = e.likes + 1
+                    }
+                    return e;
+                }))
+            });
+            
         } catch (error) {
             console.log(error);
         }
