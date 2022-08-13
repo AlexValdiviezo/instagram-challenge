@@ -57,7 +57,6 @@ Lo unico que debemos hacer a continuacion es confirmar que la url sea la correct
 
 ## Estilos
 Para los estilos utilicé css puro haciendo mucho uso del flexbox para un diseño responsivo y media querys para casos especiales en los que la aplicación no se veía a buena escala en dispositivos mobiles.
->>>>>>> ba73c75ab90d8b10d31524d73d093879f4cd5201
 <br></br>
  
 # HOST
