@@ -64,8 +64,5 @@ Para los estilos utilicé css puro haciendo mucho uso del flexbox para un diseñ
 # HOST
 - Actualmente la pagina esta hosteada en [Heroku App](https://instagram-challenge-sondeos.herokuapp.com)
 - Con su API en [https://instagram-challenge-backend.herokuapp.com/api](https://instagram-challenge-backend.herokuapp.com/api)
-<<<<<<< HEAD
 - Documentación de la API: [Documentacion en GitHub](https://github.com/AlexValdiviezo/instagram-challenge-API)
-=======
 - Documentación de la API: [Documentacion en GitHub](https://github.com/AlexValdiviezo/instagram-challenge-API)
->>>>>>> ba73c75ab90d8b10d31524d73d093879f4cd5201
