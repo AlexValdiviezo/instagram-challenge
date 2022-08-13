@@ -99,7 +99,15 @@ export default function Navbar({setNewPublic}) {
             <p>Crear una nueva publicación</p>
           </div>
           <div className='modal-body'>
-            <input onChange={(e)=>{setFile(e.target.files); console.log(e.target.files)}} type="file" name="photo"></input>
+            <div className='input-file'>
+              <p>Añadir archivos</p>
+              <input onChange={(e)=>{setFile(e.target.files); console.log(e.target.files)}} type="file" name="photo"></input>
+            </div>
+            <div className='or'>
+              <hr></hr>
+              <p>O</p>
+              <hr></hr>
+            </div>
             <input onClick={()=>setUrl('')} onChange={(e)=>setUrl(e.target.value)} value={urlImage}></input>
             <input onClick={()=>setText('')} onChange={(e)=>setText(e.target.value)} value={text}></input>
             <button onClick={()=>photoUpload(urlImage, text)}>Subir Imagen</button>
