@@ -9,6 +9,7 @@ import { uploadFiles } from '../helpers/uploadFiles';
 export default function Navbar({setNewPublic}) {
 
   const modalRef = useRef();
+  const [fileText, setFileText] = useState(null);
   const [file, setFile] = useState('');
   const [modalState, setModalState] = useState('none');
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -85,6 +86,7 @@ export default function Navbar({setNewPublic}) {
       setModalState('none');
       setIsOpen(false);
       setFile('');
+      setFileText(null);
   }
   
   const isDesktopOrLaptop = useMediaQuery({
@@ -99,6 +101,7 @@ export default function Navbar({setNewPublic}) {
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
+        onAfterClose={closeModal}
         onRequestClose={closeModal}
         className="modal-container"
         ariaHideApp={false}
@@ -117,7 +120,10 @@ export default function Navbar({setNewPublic}) {
           <div className='modal-body'>
             <div className='input-file'>
               <p>Añadir archivos</p>
-              <input onChange={(e)=>{setFile(e.target.files); console.log(e.target.files)}} type="file" name="photo"></input>
+              <input onChange={(e)=>{setFile(e.target.files); setFileText(e.target.value); console.log(e.target.files)}} type="file" name="photo"></input>
+            </div>
+            <div className='file-name'>
+              <p>{fileText && 'Archivo listo para subirse'}</p>
             </div>
             <div className='or'>
               <hr></hr>
