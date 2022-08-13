@@ -32,7 +32,7 @@ Lo unico que debemos hacer a continuacion es confirmar que la url sea la correct
 - Debajo de los likes se encuentra el titulo o texto de descripción de la imagen.
 
 ## Estilos
-### Para los estilos utilicé css puro haciendo mucho uso del flexbox para un diseño responsivo, media querys para casos especiales en los que la aplicación no se veía a buena escala en dispositivos mobiles.
+Para los estilos utilicé css puro haciendo mucho uso del flexbox para un diseño responsivo, media querys para casos especiales en los que la aplicación no se veía a buena escala en dispositivos mobiles.
 <br></br>
  
 # HOST
