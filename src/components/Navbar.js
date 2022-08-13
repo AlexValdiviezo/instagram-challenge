@@ -4,9 +4,11 @@ import { useMediaQuery } from 'react-responsive'
 
 import Modal from 'react-modal';
 import {postPublics} from '../helpers/postPublics';
+import { uploadFiles } from '../helpers/uploadFiles';
 
 export default function Navbar({setNewPublic}) {
 
+  const [file, setFile] = useState('');
   const [modalState, setModalState] = useState('none');
   const [modalIsOpen, setIsOpen] = useState(false);
   const [urlImage, setUrl] = useState('URL de la imagen');
@@ -15,7 +17,7 @@ export default function Navbar({setNewPublic}) {
 
   const photoUpload = (url, text) =>{
       setModalState('loading');
-      const result = async() => {
+      const result = async(url=url, text=text) => {
         let resp = await postPublics(url, text);
         if(resp.error){
           setError(resp.error);
@@ -25,7 +27,34 @@ export default function Navbar({setNewPublic}) {
           setNewPublic(resp);
         }
       }
-      result();
+      const uploadFile = async() =>{
+          await uploadFiles(file)
+          .then(res => {
+            url = res.url;
+            result(url, text);
+            setModalState('success');
+          })
+          .catch(error => setModalState('error'))
+      }
+
+      if(url=='URL de la imagen' && file==''){
+        setModalState('error');
+        return;
+      }
+
+      if(url!='URL de la imagen' && file!=''){
+        setModalState('error');
+        return;
+      }
+
+      if(url!='URL de la imagen'){
+        result();
+        return;
+      }
+      if(file!=''){
+        uploadFile();
+        return;
+      }
   }
 
   const openModal = () => {
@@ -70,6 +99,7 @@ export default function Navbar({setNewPublic}) {
             <p>Crear una nueva publicación</p>
           </div>
           <div className='modal-body'>
+            <input onChange={(e)=>{setFile(e.target.files); console.log(e.target.files)}} type="file" name="photo"></input>
             <input onClick={()=>setUrl('')} onChange={(e)=>setUrl(e.target.value)} value={urlImage}></input>
             <input onClick={()=>setText('')} onChange={(e)=>setText(e.target.value)} value={text}></input>
             <button onClick={()=>photoUpload(urlImage, text)}>Subir Imagen</button>

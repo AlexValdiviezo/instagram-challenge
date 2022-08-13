@@ -1,3 +1,3 @@
 export const env = {
-    urlApi: 'https://instagram-challenge-backend.herokuapp.com'
+    urlApi: 'http://localhost:8080'
 }
