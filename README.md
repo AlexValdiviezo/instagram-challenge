@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# CHALENGE DE INSTAGRAM
+## Ejecución de la aplicación:
+- Para ejecutar la aplicación primero se debern pre configurar las "variables de entorno" que agregue en la ruta `./src/configs/env`<br>Dentro enontraremos un objeto como este: <br>
+<code>
+{
+    urlApi: 'http://localhost:8080'
+}
+</code><br>
+Lo unico que debemos hacer a continuacion es confirmar que la url sea la correcta del backend.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Una vez finalizado el paso anterior proseguimos a abrir la carpeta en la consola y ejecutar el comando `npm i` <br>
 
-## Available Scripts
+- Una vez iniciada la aplicación debería estar hosteada en la ruta: `http://localhost:3000`
 
-In the project directory, you can run:
+- Dato: Si se ejecutan tanto el servidor backend como el frontend en las misma maquina es fundamental asegurarse que los puertos sean diferentes. De otra forma una aplicación pisaría a la otra.
+<br></br>
+# Caracteristicas fundamentales
 
-### `npm start`
+## Navbar
+- El navbar cuenta con dos componentes el propio navbar seguido de un modal para la interacción con la subida de archivos por medio del icono +
+- Los demas iconos no tienen funcionalidad.
+- Una vez pulsado el boton de añadir. Se entrará en cola de espera hasta que la API nos responda para renderizar la aplicación.
+- Al agregar una nueva publicación esta se enviará a la API para luego ser añadida a la base de datos.
+- En el caso de que nos devuelva un error la API, saldrá un cartel indicando un error. En tal caso intentar nuevamente con campos correspondientes
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Body
+- El cuerpo de la aplicación está compuesto por cartas de publicaciones. 
+- El botón de administración de publicación se encuentra en la punta derecha de arriba de la carta. Este mismo sirve para eliminar o editar las publicaciones.
+- Debajo de la publicación se encuentra el boton de likes para aumentar los mismos, enviando a su vez un request de actualización a la API.
+- Debajo de los likes se encuentra el titulo o texto de descripción de la imagen.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Estilos
+### Para los estilos utilicé css puro haciendo mucho uso del flexbox para un diseño responsivo, media querys para casos especiales en los que la aplicación no se veía a buena escala en dispositivos mobiles.
+<br></br>
+ 
+# HOST
+- Actualmente la pagina esta hosteada en [Heroku App](https://instagram-challenge-sondeos.herokuapp.com)
+- Con su API en [https://instagram-challenge-backend.herokuapp.com/api](https://instagram-challenge-backend.herokuapp.com/api)
+- Documentación de la API: [Documentacion en GitHub](https://github.com/AlexValdiviezo/instagram-challenge-API)

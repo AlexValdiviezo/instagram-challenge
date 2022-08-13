@@ -11,7 +11,6 @@
     .modal .modal-container{
         background-color: white;
         width: 30%;
-        height: 70%;
         border-radius: 25px;
         animation-name: modaldelete-animation;
         animation-duration: 0.5s;
@@ -19,11 +18,11 @@
     @keyframes modaldelete-animation {
         0%{
             width: 40%;
-            height: 80%;
+            height: calc(auto+10%);
         }
         100%{
             width: 30%;
-            height: 70%;
+            height: auto;
         }
     }
 }
@@ -32,7 +31,7 @@
     .modal .modal-container{
         background-color: white;
         width: 70%;
-        height: 70%;
+        height: auto;
         border-radius: 25px;
         animation-name: modaldelete-animation;
         animation-duration: 0.5s;
@@ -40,17 +39,38 @@
     @keyframes modaldelete-animation {
         0%{
             width: 80%;
-            height: 80%;
+            height: calc(auto+10%);
         }
         100%{
             width: 70%;
-            height: 70%;
+            height: auto;
         }
     }
 }
 
+.modal .modal-container{
+    height: auto;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+    gap:40px;
+}
 
-
+.modal .modal-container .edit{
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width: 100%;
+    color: black;
+    font-size: 1em;
+    font-weight: 800;
+    border-bottom: 1px solid black;
+    text-align: center;
+    cursor: pointer;
+}
 .modal .modal-container .delete{
     padding-top: 25px;
     padding-bottom: 25px;
@@ -70,9 +90,44 @@
     color: black;
     font-size: 1em;
     font-weight: 800;
-    border-bottom: 1px solid black;
     text-align: center;
     cursor: pointer;
+}
+
+.modal-container .modal-header{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #8E8E8E;
+    width: 100%;
+}
+
+.modal-container .modal-header p{
+    width: 100%;
+    text-align: center;
+}
+
+.modal-container .modal-body{
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+}
+
+.modal-container .modal-body input{
+    width: 70%;
+    height: 30px;
+}
+
+.modal-container .modal-body button{
+    width: 50%;
+    height: 30px;
+    background-color:#0095f6;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    
 }
 
 .card{

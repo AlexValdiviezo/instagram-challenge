@@ -1,5 +1,12 @@
+import { env } from "../configs/env";
+
 export const getPublics = async() =>{
-    const result = await fetch(`https://instagram-challenge-backend.herokuapp.com/api/`);
-    const {data} = await result.json();
-    return data;
+    try {
+        const result = await fetch(`${env.urlApi}/api/`);
+        const {data} = await result.json();
+        return data;
+    } catch (error) {
+        return error;
+    }
+
 }

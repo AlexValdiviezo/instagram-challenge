@@ -1,28 +1,36 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment, useState, useEffect, useRef } from 'react'
 import { getPublics } from '../helpers/getPublics';
 import { putPublics } from '../helpers/putPublics';
 import { deletePublics } from '../helpers/deletePublics';
 import './styles/Card.css'
 
 import Modal from 'react-modal';
+import { putAllproperty } from '../helpers/putAllproperty';
+import { getSpaceUntilMaxLength } from '@testing-library/user-event/dist/utils';
 
 export default function Card({newPublic}) {
 
+    const modalRef = useRef();
+
+    const [urlImage, setUrl] = useState('URL de la imagen');
+    const [text, setText] = useState('Titulo de ejemplo');
+
     const [modalIsOpen, setIsOpen] = useState(false);
-    const [idDelete, setIdDelete] = useState('');
+    const [idUpdate, setIdUpdate] = useState('');
 
     const [heartIcon, setHeartIcon] = useState('./icons/heart.svg');
     const [heartClickedClass, setHeartClass] = useState('');
     const [likes, setLikes] = useState(317);
-    const [publicCont, setPublicCont] = useState(0);
     const [publics, setPublics] = useState([]);
+    const [publicEdit, setPublicEdit] = useState(false);
 
-        useEffect( () => {
+    const publicCont = publics.length;
+
+    useEffect( () => {
         const result = async() => {
             let resp = await getPublics();
             if(resp[0]) {
                 setPublics(resp);
-                setPublicCont(resp.length);
             }
             else setPublics([])
           }
@@ -33,11 +41,9 @@ export default function Card({newPublic}) {
         if(newPublic.uid){
             let array = [];
             array.push(newPublic)
-            console.log(array);
             publics.map((e)=>{
                 array.push(e);
             })
-            console.log(array);
             setPublics(array);
         }
     },[newPublic])
@@ -54,11 +60,15 @@ export default function Card({newPublic}) {
     
     const closeModal = () =>{
         setIsOpen(false);
+        setPublicEdit(false);
     }
 
-    const openModal = (uid) =>{
-        setIdDelete(uid);
+    const openModal = (uid, titulo, imagen, likes) =>{
+        setIdUpdate(uid);
+        setText(titulo);
+        setUrl(imagen);
         setIsOpen(true);
+        setLikes(likes);
     }
 
     const deletePublic = (uid) =>{
@@ -66,8 +76,34 @@ export default function Card({newPublic}) {
         req();
         setPublics(e=>{
             e = e.map(arrayElements => {
-                if(arrayElements.uid != idDelete ){
+                if(arrayElements.uid != idUpdate ){
                     return arrayElements;
+                }
+            })
+            e = e.filter(Boolean);
+            return e;
+        })
+        setIsOpen(false);
+    }
+
+    const editPublic = () =>{
+        setPublicEdit(true);
+    }
+
+    const photoUpdate = (id, urlImage, text) =>{
+        const req = async() => await putAllproperty(id, urlImage, text);
+        req();
+        setPublics(e=>{
+            e = e.map(arrayElements => {
+                if(arrayElements.uid != idUpdate ){
+                    return arrayElements;
+                }else{
+                    return {
+                        uid: idUpdate,
+                        imagen: urlImage,
+                        titulo: text,
+                        likes
+                    }
                 }
             })
             e = e.filter(Boolean);
@@ -81,13 +117,33 @@ export default function Card({newPublic}) {
         <Modal
             isOpen={modalIsOpen}
             onRequestClose={closeModal}
+            onAfterClose={closeModal}
             className="modal"
-            ariaHideApp={false}
+            ariaHideApp={false} 
+            shouldCloseOnEsc={true}
+            shouldCloseOnOverlayClick={true}
         >
+            {!publicEdit && 
             <div className='modal-container'>
-                <div onClick={()=>deletePublic(idDelete)} className='delete'>Eliminar publicación</div>
+                <div onClick={()=>deletePublic(idUpdate)} className='delete'>Eliminar publicación</div>
+                <div onClick={editPublic}className='edit'>Editar publicación</div>
                 <div onClick={closeModal}className='cancel'>Cancelar</div>
             </div>
+            }{
+                publicEdit &&
+                <div className='modal-container'>
+                    <div className='modal-header'>
+                        <p>Editar publicación</p>
+                    </div>
+                    <div className='modal-body'>
+                        <input onClick={()=>setUrl('')} onChange={(e)=>setUrl(e.target.value)} value={urlImage}></input>
+                        <input onClick={()=>setText('')} onChange={(e)=>setText(e.target.value)} value={text}></input>
+                        <button onClick={()=>photoUpdate(idUpdate ,urlImage, text, likes)}>Actualizar información</button>
+                    </div>
+                </div>
+
+            }
+            
             
         </Modal>
 
@@ -117,15 +173,13 @@ export default function Card({newPublic}) {
                                 <img src='./icons/profile.svg'></img>
                                 <p>username</p>
                             </div>
-                            <div onClick={()=>openModal(e.uid)} className='menu'>
+                            <div onClick={()=>openModal(e.uid, e.titulo, e.imagen, e.likes)} className='menu'>
                                 <img src='./icons/menu.svg'></img>
                             </div>
                         </div>
                         <img src={e.imagen}></img>
                         <div className='buttons-card'>
                             <img onClick={()=>changeHeart(e.uid)} src={heartIcon} className={heartClickedClass}></img>
-                            <img src='./icons/comment.svg'></img>
-                            <img src='./icons/share.svg'></img>
                         </div>
                         <div className='cont-likes'>
                             <p>{e.likes} Me gusta</p>
@@ -133,15 +187,6 @@ export default function Card({newPublic}) {
                         <div className='photo-index'>
                             <p className='comment-user'><a className='user'>username</a> {e.titulo}</p>
                         </div>
-                        {/*
-                        //Caja de comentarios
-                        <div className='comment-container'>
-                            <div className='comment'>
-                                <img src='./icons/emote.svg'></img>
-                                <input value='Añade un comentario...'></input>
-                            </div>
-                            <img src='./icons/public-button.svg'></img>
-                        </div>*/}
                     </div>
                 )
             })

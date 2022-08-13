@@ -1,11 +1,11 @@
 import { env } from "../configs/env";
 
-export const putPublics = async(id) =>{
+export const putAllproperty = async(id, imagen, titulo) =>{
     try {
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id: id, like:1})
+            body: JSON.stringify({ id, imagen, titulo, like:0})
         };
         const {data} = await fetch(`${env.urlApi}/api/`, requestOptions);
         return data;

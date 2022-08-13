@@ -42,33 +42,12 @@ export default function Navbar({setNewPublic}) {
       setIsOpen(false);
   }
   
-
-// Media querys
   const isDesktopOrLaptop = useMediaQuery({
     query: '(min-width: 710px)'
   })
   const isPhoneOrTablet = useMediaQuery({
     query: '(max-width: 710px)'
   })
-
-// Algoritmo de busqueda input
-/*
-  const searchInicial = 'Busca'
-
-  const [search, setSearch] = useState(searchInicial);
-
-  const changeSearch = (e) => {
-    setSearch(e.target.value);
-  }
-
-  const searchInit = () =>{
-    if(search === searchInicial) setSearch('')
-  }
-
-  const isNotFocusSearch = () =>{
-    if(search === '') setSearch(searchInicial)
-  }
-*/
 
   return (
     <Fragment>
@@ -116,7 +95,7 @@ export default function Navbar({setNewPublic}) {
         }
       </Modal>
       <div className='container'>
-        <img src='./icons/instagram.svg'></img>
+        <a href='#'><img src='./icons/instagram.svg'></img></a>
         {/* //Buscador
           isDesktopOrLaptop &&
           <div className='search-container'>
