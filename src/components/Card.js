@@ -184,9 +184,11 @@ export default function Card({newPublic}) {
                         <div className='cont-likes'>
                             <p>{e.likes} Me gusta</p>
                         </div>
-                        <div className='photo-index'>
-                            <p className='comment-user'><a className='user'>username</a> {e.titulo}</p>
-                        </div>
+                        {(e.titulo !== '') &&
+                            <div className='photo-index'>
+                                <p className='comment-user'><a className='user'>username</a> {e.titulo}</p>
+                            </div>
+                        }
                     </div>
                 )
             })
