@@ -34,23 +34,28 @@ export default function Navbar({setNewPublic}) {
   const photoUpload = (url, text) =>{
       setModalState('loading');
       const result = async(url=url, text=text) => {
-        let resp = await postPublics(url, text);
-        if(resp.error){
-          setError(resp.error);
-          setModalState('error');
-        }else{
+        try {
+          let resp = await postPublics(url, text);
+          if(resp.error){
+            setError(resp.error);
+            setModalState('error');
+          }else{
+            setModalState('success');
+            setNewPublic(resp);
+          }
+        } catch (error) {
           setModalState('success');
-          setNewPublic(resp);
         }
       }
+      
       const uploadFile = async() =>{
-          await uploadFiles(file)
-          .then(res => {
-            url = res.url;
-            result(url, text);
-            setModalState('success');
-          })
-          .catch(error => setModalState('error'))
+        await uploadFiles(file)
+        .then(res => {
+          url = res.url;
+          result(url, text);
+          setModalState('success');
+        })
+        .catch(error => setModalState('error'))
       }
 
       if(url=='URL de la imagen' && file==''){
@@ -63,13 +68,10 @@ export default function Navbar({setNewPublic}) {
         return;
       }
 
-      if(url!='URL de la imagen'){
-        result();
-        return;
-      }
-      if(file!=''){
+      if(url=='URL de la imagen' && file !== ''){
         uploadFile();
-        return;
+      }else{
+        result(url, text);
       }
   }
 
